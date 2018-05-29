@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ContractMapper">
+	<resultMap id="BaseResultMap" type="com.entity.Contract">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="date" jdbcType="VARCHAR" property="date" />
+		<result column="publisher" jdbcType="VARCHAR"
+			property="publisher" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="descriptioin" jdbcType="VARCHAR"
+			property="descriptioin" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, date, publisher, name, descriptioin, address, type
+	</sql>
+	<insert id="insertSelective" parameterType="com.entity.Contract" useGeneratedKeys="true" keyProperty="id">
+		
+		insert into contract
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="date != null">
+				date,
+			</if>
+			<if test="publisher != null">
+				publisher,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="descriptioin != null">
+				descriptioin,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			<if test="date != null">
+				#{date,jdbcType=VARCHAR},
+			</if>
+			<if test="publisher != null">
+				#{publisher,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="descriptioin != null">
+				#{descriptioin,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.entity.Contract">
+		update contract
+		<set>
+			<if test="date != null">
+				date = #{date,jdbcType=VARCHAR},
+			</if>
+			<if test="publisher != null">
+				publisher = #{publisher,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="descriptioin != null">
+				descriptioin = #{descriptioin,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

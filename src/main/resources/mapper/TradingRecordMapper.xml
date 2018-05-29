@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TradingRecordMapper">
+	<resultMap id="BaseResultMap" type="com.entity.TradingRecord">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="date" jdbcType="VARCHAR" property="date" />
+		<result column="sender" jdbcType="VARCHAR" property="sender" />
+		<result column="recepient" jdbcType="VARCHAR"
+			property="recepient" />
+		<result column="ammount" jdbcType="VARCHAR" property="ammount" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, date, sender, recepient, ammount, name, type
+	</sql>
+	<insert id="insertSelective" parameterType="com.entity.TradingRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into trading_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="date != null">
+				date,
+			</if>
+			<if test="sender != null">
+				sender,
+			</if>
+			<if test="recepient != null">
+				recepient,
+			</if>
+			<if test="ammount != null">
+				ammount,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=INTEGER},
+			<if test="date != null">
+				#{date,jdbcType=VARCHAR},
+			</if>
+			<if test="sender != null">
+				#{sender,jdbcType=VARCHAR},
+			</if>
+			<if test="recepient != null">
+				#{recepient,jdbcType=VARCHAR},
+			</if>
+			<if test="ammount != null">
+				#{ammount,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.entity.TradingRecord">
+		update trading_record
+		<set>
+			<if test="date != null">
+				date = #{date,jdbcType=VARCHAR},
+			</if>
+			<if test="sender != null">
+				sender = #{sender,jdbcType=VARCHAR},
+			</if>
+			<if test="recepient != null">
+				recepient = #{recepient,jdbcType=VARCHAR},
+			</if>
+			<if test="ammount != null">
+				ammount = #{ammount,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
