@@ -37,4 +37,17 @@ public interface ContractMapper {
 
     @Update({"update contract set date = #{date,jdbcType=VARCHAR},publisher = #{publisher,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},descriptioin = #{descriptioin,jdbcType=VARCHAR},address = #{address,jdbcType=VARCHAR},type = #{type,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}"})
     int updateByPrimaryKey(Contract record);
+    
+    //新增
+    @Select({"select * from contract where publisher = #{publisher,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.ContractMapper.BaseResultMap")
+    List<Contract> selectByPrimaryPublisher(String publisher);
+    
+    @Select({"select * from contract where name = #{name,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.ContractMapper.BaseResultMap")
+    List<Contract> selectByPrimaryName(String name);
+    
+    @Select({"select * from contract where address = #{address,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.ContractMapper.BaseResultMap")
+    Contract selectByPrimaryAddress(String address);
 }

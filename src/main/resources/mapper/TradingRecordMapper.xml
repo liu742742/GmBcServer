@@ -17,7 +17,9 @@
 	<insert id="insertSelective" parameterType="com.entity.TradingRecord" useGeneratedKeys="true" keyProperty="id">
 		insert into trading_record
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			id,
+			<if test="id != null">
+				id,
+			</if>
 			<if test="date != null">
 				date,
 			</if>
@@ -38,7 +40,9 @@
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			#{id,jdbcType=INTEGER},
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
 			<if test="date != null">
 				#{date,jdbcType=VARCHAR},
 			</if>

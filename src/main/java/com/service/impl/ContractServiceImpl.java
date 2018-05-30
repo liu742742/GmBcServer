@@ -14,7 +14,7 @@ public class ContractServiceImpl implements ContractService {
 
     @Autowired
     ContractMapper contractMapper;
-    
+
     @Override
     public int deleteByPrimaryKey(Integer id) {
         // TODO Auto-generated method stub
@@ -55,5 +55,24 @@ public class ContractServiceImpl implements ContractService {
     public int updateByPrimaryKey(Contract record) {
         // TODO Auto-generated method stub
         return contractMapper.updateByPrimaryKey(record);
+    }
+
+    // 新增
+    @Override
+    public List<Contract> selectByPrimaryPublisher(String publisher) {
+        // TODO Auto-generated method stub
+        return contractMapper.selectByPrimaryPublisher(publisher);
+    }
+    
+    @Override
+    public List<Contract> selectByPrimaryName(String name) {
+        // TODO Auto-generated method stub
+        return contractMapper.selectByPrimaryName(name);
+    }
+
+    @Override
+    public Contract selectByPrimaryAddress(String address) {
+        // TODO Auto-generated method stub
+        return contractMapper.selectByPrimaryAddress(address);
     }
 }

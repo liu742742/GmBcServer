@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
@@ -37,4 +38,14 @@ public interface UserMapper {
 
     @Update({"update user set username = #{username,jdbcType=VARCHAR}, password = #{password,jdbcType=VARCHAR}, address = #{address,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}"})
     int updateByPrimaryKey(User record);
+    
+    //新增
+    @Select({"select * from user where username = #{username,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.UserMapper.BaseResultMap")
+    User selectByPrimaryUsername(String username);
+    
+    @Select({"select * from user where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.UserMapper.BaseResultMap")
+    User selectByPrimaryUsernameAndPassword(@Param("username")String username,@Param("password")String password);
+    
 }

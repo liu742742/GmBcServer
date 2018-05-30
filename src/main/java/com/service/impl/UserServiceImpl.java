@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.select();
     }
 
-    
     @Override
     public int updateByPrimaryKeySelective(User record) {
         // TODO Auto-generated method stub
@@ -56,5 +55,18 @@ public class UserServiceImpl implements UserService {
     public int updateByPrimaryKey(User record) {
         // TODO Auto-generated method stub
         return userMapper.updateByPrimaryKey(record);
+    }
+    
+    //新增
+    @Override
+    public User selectByPrimaryUsername(String username) {
+        // TODO Auto-generated method stub
+        return userMapper.selectByPrimaryUsername(username);
+    }
+    
+    @Override
+    public User selectByPrimaryUsernameAndPassword(String username,String password) {
+        // TODO Auto-generated method stub
+        return userMapper.selectByPrimaryUsernameAndPassword(username,password);
     }
 }

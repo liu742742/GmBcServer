@@ -56,4 +56,23 @@ public class TradingRecordServiceImpl implements TradingRecordService {
         // TODO Auto-generated method stub
         return tradingRecordMapper.updateByPrimaryKey(record);
     }
+
+    //新增
+    @Override
+    public List<TradingRecord> selectByPrimarySender(String sender) {
+        // TODO Auto-generated method stub
+        return tradingRecordMapper.selectByPrimarySender(sender);
+    }
+
+    @Override
+    public List<TradingRecord> selectByPrimaryRecepient(String recepient) {
+        // TODO Auto-generated method stub
+        return tradingRecordMapper.selectByPrimaryRecepient(recepient);
+    }
+
+    @Override
+    public List<TradingRecord> selectByPrimaryName(String name) {
+        // TODO Auto-generated method stub
+        return tradingRecordMapper.selectByPrimaryName(name);
+    }
 }

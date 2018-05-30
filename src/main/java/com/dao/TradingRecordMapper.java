@@ -37,4 +37,17 @@ public interface TradingRecordMapper {
 
     @Update({"update trading_record set date = #{date,jdbcType=VARCHAR},sender = #{sender,jdbcType=VARCHAR},", "recepient = #{recepient,jdbcType=VARCHAR},ammount = #{ammount,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},type = #{type,jdbcType=VARCHAR}where id = #{id,jdbcType=INTEGER}"})
     int updateByPrimaryKey(TradingRecord record);
+    
+    //新增
+    @Select({"select * from trading_record where sender = #{sender,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.TradingRecordMapper.BaseResultMap")
+    List<TradingRecord> selectByPrimarySender(String sender);
+    
+    @Select({"select * from trading_record where recepient = #{recepient,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.TradingRecordMapper.BaseResultMap")
+    List<TradingRecord> selectByPrimaryRecepient(String recepient);
+    
+    @Select({"select * from trading_record where name = #{name,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.TradingRecordMapper.BaseResultMap")
+    List<TradingRecord> selectByPrimaryName(String name);
 }

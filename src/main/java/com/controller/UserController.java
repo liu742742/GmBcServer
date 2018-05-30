@@ -1,8 +1,7 @@
 package com.controller;
 
-
-import java.io.UnsupportedEncodingException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,103 +11,179 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.entity.User;
 import com.service.UserService;
 
 /**
- * creation time 2018 05 18 
+ * 用户名、密码操作 creation time 2018 05 25
+ * 
  * @author User742742
  * 
  */
 @RestController
-public class UserController{
-    public static List<User> listUser;
-    
+public class UserController {
+
     @Autowired
     UserService userService;
 
     /**
      * 登录
+     * 
      * @param request
      * @param response
      * @return
      */
-    @RequestMapping(value = "/login",method=RequestMethod.POST)
-    public JSONObject login(HttpServletRequest request,HttpServletResponse response) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
         try {
-            String username = new String((request.getParameter("username")).getBytes("ISO-8859-1"),"UTF-8");
-            String password = new String((request.getParameter("password")).getBytes("ISO-8859-1"),"UTF-8");
-            System.out.println(username);
-            System.out.println(password);
-            System.out.println(request.getHeader("Referer"));
-            if (request.getHeader("Referer")!=null) {
-                System.out.println(listUser);
-                if (listUser == null) {
-                    listUser = userService.select();
-                } 
-                for (User user : listUser) {
-                    if(user.getUsername().equals(username)) {
-                        if(user.getPassword().equals(password)) {
-                            System.err.println("登录成功");
-                            JSONObject json = JSON.parseObject("{ret=0,username="+user.getUsername()
-                            +",password="+user.getPassword()+",address="+user.getAddress()+"}");
-                            return json;
-                        }
-                        System.err.println("密码错误");
-                        JSONObject json = JSON.parseObject("{ret=1}");
-                        return json;
-                    }
-                    System.err.println("用户不存在");
-                    JSONObject json = JSON.parseObject("{ret=2}");
-                    return json;
+            String username = request.getParameter("username").trim();
+            String password = request.getParameter("password").trim();
+            User user = userService.selectByPrimaryUsernameAndPassword(username, password);
+            try {
+                if (user.getId() != null) {
+                    System.err.println("登录成功");
+                    map.put("ret", 0);
+                    map.put("user", user);
+                    return map;
                 }
-                System.err.println("数据库错误");
-                JSONObject json = JSON.parseObject("{ret=3}");
-                return json;
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                System.err.println("用户不存在");
+                map.put("ret", 1);
+                return map;
             }
-            System.err.println("非法进入");
-            JSONObject json = JSON.parseObject("{ret=6}");
-            return json;
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.err.println("编码错误");
-            JSONObject json = JSON.parseObject("{ret=4}");
-            return json;
-        } catch(Exception e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             System.err.println("系统错误");
-            JSONObject json = JSON.parseObject("{ret=5}");
-            return json;
+            map.put("ret", 2);
         }
+        return map;
     }
 
-   
-
-    @RequestMapping(value = "/userInsert",method=RequestMethod.POST)
-    public int insert(Object record) {
-        // TODO Auto-generated method stub
-        return 0;
+    /**
+     * 新增
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/userInsert", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public Map<String, Object> insert(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            String username = request.getParameter("username").trim();
+            String password = request.getParameter("password").trim();
+            String address = request.getParameter("address").trim();
+            User olduser = userService.selectByPrimaryUsername(username);
+            try {
+                if (olduser.getId() != null) {
+                    System.err.println("用户名已存在");
+                    map.put("ret", 3);
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(password);
+                user.setAddress(address);
+                int i = userService.insertSelective(user);
+                if (i == 1) {
+                    System.err.println("新增成功");
+                    map.put("ret", 0);
+                    map.put("user", user);
+                    return map;
+                }
+                System.err.println("新增失败");
+                map.put("ret", 1);
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.err.println("系统错误");
+            map.put("ret", 2);
+        }
+        return map;
     }
 
-    @RequestMapping(value = "/userUpdata",method=RequestMethod.POST)
-    public int update(Object record) {
-        // TODO Auto-generated method stub
-        return 0;
+    /**
+     * 修改
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/userUpdata", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public Map<String, Object> update(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            User user = new User();
+            user.setId(Integer.parseInt(request.getParameter("id").trim()));
+            user.setUsername(request.getParameter("username").trim());
+            user.setPassword(request.getParameter("password").trim());
+            user.setAddress(request.getParameter("address").trim());
+            int i = userService.updateByPrimaryKeySelective(user);
+            if (i == 1) {
+                System.err.println("修改成功");
+                map.put("ret", 0);
+                map.put("user", user);
+                return map;
+            }
+            System.err.println("修改失败");
+            map.put("ret", 1);
+        } catch (NumberFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.err.println("id不是数字");
+            map.put("ret", 3);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.err.println("系统错误");
+            map.put("ret", 2);
+        }
+        return map;
     }
 
-    @RequestMapping(value = "/userSelect",method=RequestMethod.POST)
-    public List<?> select(Integer... id) {
-        // TODO Auto-generated method stub
-        return null;
+    /**
+     * 查询本人
+     * 
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/userSelect", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public Map<String, Object> select(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            User user = new User();
+            user = userService.selectByPrimaryKey(Integer.parseInt(request.getParameter("id").trim()));
+            try {
+                if (user.getId() != null) {
+                    System.err.println("根据id查询成功");
+                    map.put("ret", 0);
+                    map.put("user", user);
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                System.err.println("用户不存在");
+                map.put("ret", 1);
+            }
+        } catch (NumberFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.err.println("id不是数字");
+            map.put("ret", 3);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.err.println("系统错误");
+            map.put("ret", 2);
+        }
+        return map;
     }
-    @RequestMapping(value = "/userDelect",method=RequestMethod.POST)
-    public int delect(int id) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
 }

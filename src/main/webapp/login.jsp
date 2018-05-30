@@ -11,10 +11,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/login.html" method="post" target="_self">
+<div>用户</div>
+<form action="/login" method="post" target="_self">
 	用户名:<input type="text" name="username"><br>
 	密码:<input type="text" name="password"><br>
 	<input type="submit" value="登录">	
+</form>
+<form action="/userInsert" method="post" target="_self">
+	用户名:<input type="text" name="username"><br>
+	密码:<input type="text" name="password"><br>
+	地址:<input type="text" name="address"><br>
+	<input type="submit" value="创建">	
+</form><form action="/userUpdata" method="post" target="_self">
+	id:<input type="text" name="id"><br>
+	用户名:<input type="text" name="username"><br>
+	密码:<input type="text" name="password"><br>
+	地址:<input type="text" name="address"><br>
+	<input type="submit" value="修改">	
+</form><form action="/userSelect" method="post" target="_self">
+	id:<input type="text" name="id"><br>
+	<input type="submit" value="查询">	
+</form>
+
+<div>交易记录</div>
+<form action="/tradingRecordInsert" method="post" target="_self">
+	发送人:<input type="text" name="sender"><br>
+	接收人:<input type="text" name="recepient"><br>
+	数量:<input type="text" name="ammount"><br>
+	合约名:<input type="text" name="name"><br>
+	合约类型:<input type="text" name="type"><br>
+	<input type="submit" value="创建交易记录">	
+</form>
+<form action="/tradingRecordSelectSender" method="get" target="_self">
+	发送人:<input type="text" name="sender"><br>
+	<input type="submit" value="根据发送人查询">	
+</form>
+<form action="/tradingRecordSelectRecepient" method="get" target="_self">
+	接收人:<input type="text" name="recepient"><br>
+	<input type="submit" value="根据接收人查询">	
+</form>
+<form action="/tradingRecordSelectName" method="get" target="_self">
+	合约名:<input type="text" name="name"><br>
+	<input type="submit" value="根据合约名查询">	
+</form>
+<div>合约</div>
+<form action="/contractInsert" method="post" target="_self">
+	发布人:<input type="text" name="publisher"><br>
+	合约名:<input type="text" name="name"><br>
+	合约功能:<input type="text" name="descriptioin"><br>
+	合约地址:<input type="text" name="address"><br>
+	合约类型:<input type="text" name="type"><br>
+	<input type="submit" value="创建合约">	
+</form>
+<form action="/contractUpdate" method="post" target="_self">
+	id:<input type="text" name="id"><br>
+	发布人:<input type="text" name="publisher"><br>
+	合约名:<input type="text" name="name"><br>
+	合约功能:<input type="text" name="descriptioin"><br>
+	合约地址:<input type="text" name="address"><br>
+	合约类型:<input type="text" name="type"><br>
+	<input type="submit" value="修改合约">	
+</form>
+<form action="/contractSelectPublisher" method="get" target="_self">
+	发布人:<input type="text" name="publisher"><br>
+	<input type="submit" value="根据发布人查询">	
+</form>
+<form action="/contractSelectName" method="get" target="_self">
+	合约名:<input type="text" name="name"><br>
+	<input type="submit" value="根据合约名查询">	
+</form>
+<form action="/contractSelectAddress" method="get" target="_self">
+	合约地址:<input type="text" name="address"><br>
+	<input type="submit" value="根据合约地址查询">	
 </form>
 </body>
 </html>
