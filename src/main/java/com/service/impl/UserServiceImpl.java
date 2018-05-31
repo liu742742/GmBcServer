@@ -69,4 +69,10 @@ public class UserServiceImpl implements UserService {
         // TODO Auto-generated method stub
         return userMapper.selectByPrimaryUsernameAndPassword(username,password);
     }
+
+    @Override
+    public User selectByPrimaryAddress(String address) {
+        // TODO Auto-generated method stub
+        return userMapper.selectByPrimaryAddress(address);
+    }
 }

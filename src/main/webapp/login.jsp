@@ -17,12 +17,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	密码:<input type="text" name="password"><br>
 	<input type="submit" value="登录">	
 </form>
-<form action="/userInsert" method="post" target="_self">
+<form action="/sigup" method="post" target="_self">
 	用户名:<input type="text" name="username"><br>
 	密码:<input type="text" name="password"><br>
 	地址:<input type="text" name="address"><br>
-	<input type="submit" value="创建">	
-</form><form action="/userUpdata" method="post" target="_self">
+	<input type="submit" value="注册">	
+</form>
+<!-- <form action="/userUpdata" method="post" target="_self">
 	id:<input type="text" name="id"><br>
 	用户名:<input type="text" name="username"><br>
 	密码:<input type="text" name="password"><br>
@@ -31,10 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </form><form action="/userSelect" method="post" target="_self">
 	id:<input type="text" name="id"><br>
 	<input type="submit" value="查询">	
-</form>
+</form> -->
 
 <div>交易记录</div>
-<form action="/tradingRecordInsert" method="post" target="_self">
+<form action="/saveTransaction" method="post" target="_self">
 	发送人:<input type="text" name="sender"><br>
 	接收人:<input type="text" name="recepient"><br>
 	数量:<input type="text" name="ammount"><br>
@@ -42,7 +43,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	合约类型:<input type="text" name="type"><br>
 	<input type="submit" value="创建交易记录">	
 </form>
-<form action="/tradingRecordSelectSender" method="get" target="_self">
+<form action="/transactions" method="get" target="_self">
+	<input type="submit" value="查询交易记录">	
+</form>
+<!-- <form action="/tradingRecordSelectSender" method="get" target="_self">
 	发送人:<input type="text" name="sender"><br>
 	<input type="submit" value="根据发送人查询">	
 </form>
@@ -53,9 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form action="/tradingRecordSelectName" method="get" target="_self">
 	合约名:<input type="text" name="name"><br>
 	<input type="submit" value="根据合约名查询">	
-</form>
+</form> -->
 <div>合约</div>
-<form action="/contractInsert" method="post" target="_self">
+<form action="/saveContract" method="post" target="_self">
 	发布人:<input type="text" name="publisher"><br>
 	合约名:<input type="text" name="name"><br>
 	合约功能:<input type="text" name="descriptioin"><br>
@@ -63,7 +67,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	合约类型:<input type="text" name="type"><br>
 	<input type="submit" value="创建合约">	
 </form>
-<form action="/contractUpdate" method="post" target="_self">
+<form action="/contracts" method="get" target="_self">
+	<input type="submit" value="查询合约">	
+</form>
+<form action="/token" method="get" target="_self">
+	<input type="submit" value="查询代币">	
+</form>
+<!-- <form action="/contractUpdate" method="post" target="_self">
 	id:<input type="text" name="id"><br>
 	发布人:<input type="text" name="publisher"><br>
 	合约名:<input type="text" name="name"><br>
@@ -83,6 +93,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form action="/contractSelectAddress" method="get" target="_self">
 	合约地址:<input type="text" name="address"><br>
 	<input type="submit" value="根据合约地址查询">	
-</form>
+</form> -->
 </body>
 </html>

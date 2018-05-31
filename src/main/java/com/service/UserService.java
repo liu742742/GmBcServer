@@ -85,4 +85,12 @@ public interface UserService {
      */
     User selectByPrimaryUsernameAndPassword(String username, String password);
 
+    /**
+     * 根据address查询数据
+     * 
+     * @param username
+     * @param password
+     * @return
+     */
+    User selectByPrimaryAddress(String address);
 }

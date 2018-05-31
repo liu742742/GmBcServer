@@ -48,4 +48,7 @@ public interface UserMapper {
     @ResultMap("com.dao.UserMapper.BaseResultMap")
     User selectByPrimaryUsernameAndPassword(@Param("username")String username,@Param("password")String password);
     
+    @Select({"select * from user where address = #{address,jdbcType=VARCHAR}"})
+    @ResultMap("com.dao.UserMapper.BaseResultMap")
+    User selectByPrimaryAddress(String address);
 }
