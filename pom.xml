@@ -6,7 +6,7 @@
 	<groupId>GmBcServer</groupId>
 	<artifactId>GmBcServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>GmBcServer</name>
 	<description>GmBcServer project for Spring Boot</description>
 	<parent>
@@ -48,10 +48,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
 		<!--添加jsp依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -71,7 +76,8 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<!-- 指定package生成的文件名为boot-1.jar <finalName>boot-1</finalName> -->
+		<!-- 指定package生成的文件名为boot-1.jar -->
+		<finalName>GmBcServer</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -85,6 +91,16 @@
 						<version>1.2.6.RELEASE</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<!-- java编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
 			</plugin>
 			<!-- mybatis自动生成代码插件 -->
 			<plugin>
