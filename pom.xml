@@ -79,6 +79,15 @@
 		<!-- 指定package生成的文件名为boot-1.jar -->
 		<finalName>GmBcServer</finalName>
 		<plugins>
+			<!-- 配置Tomcat插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<!--* tomcat configuration --><url>http://115.233.227.46:7013/manager/text</url><username>tomcat</username><password>tomcat</password><server>a2d</server><!-- tomcat configuration *-->
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
