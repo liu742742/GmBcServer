@@ -1,14 +1,5 @@
 module.exports = [
   {
-    "file": "../src/main/java/com/spider/website/spidercase/entity/SpiderAllocation.java",
-    "replace": [
-      {
-        "regex": "(/\\*\\*phantomjs address\\*/)(.|\\n)*(/\\*phantomjs address\\*\\*/)",
-        "content": "private static String phantomjsaddress=Thread.currentThread().getContextClassLoader().getResource(\"\").getPath()+\"com/spider/driver/phantomjs.exe\";"
-      }
-    ]
-  },
-  {
     "file": "../pom.xml",
     "replace": [
       {

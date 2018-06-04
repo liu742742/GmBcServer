@@ -1,19 +1,27 @@
 module.exports = [
   {
-    "file": "../src/main/java/com/spider/website/spidercase/entity/SpiderAllocation.java",
-    "replace": [
-      {
-        "regex": "(/\\*\\*phantomjs address\\*/)(.|\\n)*(/\\*phantomjs address\\*\\*/)",
-        "content": "private static String phantomjsaddress=\"/usr/bin/phantomjs\";"
-      }
-    ]  
-  },
-  {
     "file": "../pom.xml",
     "replace": [
       {
         "regex": "(<\\!--\\* tomcat configuration -->)(.|\\n)*(<\\!-- tomcat configuration \\*-->)",
         "content": "<url>http://115.233.227.46:7008/manager/text</url><username>admin</username><password>admin</password><server>tomcat8</server>"
+      }
+    ]  
+  },
+  {
+    "file": "../src/main/resources/application.properties",
+    "replace": [
+      {
+        "regex": "(## mysql url #)(.|\\n)*(# mysql url ##)",
+        "content": "spring.datasource.url=jdbc:mysql://115.233.227.46:7007/gmbcserver?characterEncoding=utf8&useUnicode=true&useSSL=true"
+      },
+      {
+        "regex": "(## mysql username #)(.|\\n)*(# mysql username ##)",
+        "content": "spring.datasource.username=root"
+      },
+      {
+        "regex": "(## mysql password #)(.|\\n)*(# mysql password ##)",
+        "content": "spring.datasource.password=root"
       }
     ]  
   }
