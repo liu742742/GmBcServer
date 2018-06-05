@@ -84,6 +84,6 @@ public class Contract {
     @Override
     public String toString() {
         return "Contract={" + "id=" + id + ", date='" + date + '\'' + ", publisher=" + publisher + ", name="
-                + name + ", descriptioin=" + descriptioin + ", address=" + address + ", type=" + type + '}';
+                + name + ", descriptioin=" + descriptioin + ", address=" + address + ", type=" + type + ",artifact="+artifact+"}";
     }
 }

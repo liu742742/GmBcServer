@@ -35,7 +35,7 @@ public interface ContractMapper {
     
     int updateByPrimaryKeySelective(Contract record);
 
-    @Update({"update contract set date = #{date,jdbcType=VARCHAR},publisher = #{publisher,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},descriptioin = #{descriptioin,jdbcType=VARCHAR},address = #{address,jdbcType=VARCHAR},type = #{type,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}"})
+    @Update({"update contract set date = #{date,jdbcType=VARCHAR},publisher = #{publisher,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},descriptioin = #{descriptioin,jdbcType=VARCHAR},address = #{address,jdbcType=VARCHAR},type = #{type,jdbcType=VARCHAR},artifact = #{artifact,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}"})
     int updateByPrimaryKey(Contract record);
     
     //新增
