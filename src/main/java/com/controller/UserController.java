@@ -70,52 +70,30 @@ public class UserController {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/sigup", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public Map<String, Object> insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            String username = request.getParameter("username").trim();
-            String password = request.getParameter("password").trim();
-            String address = request.getParameter("address").trim();
-            User olduser = userService.selectByPrimaryUsername(username);
-            try {
-                if (olduser.getId() != null) {
-                    System.err.println("用户名已存在");
-                    map.put("ret", 3);
-                    return map;
-                }
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                try {
-                    User user = userService.selectByPrimaryAddress(address);
-                    if (user.getId() != null) {
-                        System.err.println("区块链上的地址已存在");
-                        map.put("ret", 4);
-                    }
-                } catch (Exception e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                    User user = new User();
-                    user.setUsername(username);
-                    user.setPassword(password);
-                    user.setAddress(address);
-                    int i = userService.insertSelective(user);
-                    if (i == 1) {
-                        System.err.println("新增成功");
-                        map.put("ret", 0);
-                        return map;
-                    }
-                    System.err.println("新增失败");
-                    map.put("ret", 1);
-                }
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.err.println("系统错误");
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
+        String address = request.getParameter("address").trim();
+        User userExist = userService.selectByPrimaryUsername(username);
+
+        if (userExist != null) {
             map.put("ret", 2);
+            map.put("msg", "用户名已存在");
+            return map;
         }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAddress(address);
+        if (userService.insertSelective(user) == 1) {
+            map.put("ret", 0);
+            return map;
+        }
+        map.put("ret", 2);
+        map.put("msg", "新增失败");
         return map;
     }
 
