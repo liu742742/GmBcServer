@@ -3,8 +3,10 @@ package com.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +33,10 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> login(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
-        String username = ((String) data.get("username")).trim();
-        String password = ((String) data.get("password")).trim();
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
         User user = userService.selectByPrimaryUsernameAndPassword(username, password);
         if (user != null) {
             System.err.println("登录成功");
@@ -56,11 +58,11 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> insert(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
-        String username = ((String) data.get("username")).trim();
-        String password = ((String) data.get("password")).trim();
-        String address = ((String) data.get("address")).trim();
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
+        String address = request.getParameter("address").trim();
         User user = userService.selectByPrimaryUsername(username);
         if (user != null) {
             System.err.println("用户名已存在");
@@ -98,13 +100,13 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/userUpdata", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> update(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         User user = new User();
-        user.setId(Integer.parseInt(((String) data.get("id")).trim()));
-        user.setUsername(((String) data.get("username")).trim());
-        user.setPassword(((String) data.get("password")).trim());
-        user.setAddress(((String) data.get("address")).trim());
+        user.setId(Integer.parseInt(request.getParameter("id").trim()));
+        user.setUsername(request.getParameter("username").trim());
+        user.setPassword(request.getParameter("password").trim());
+        user.setAddress(request.getParameter("address").trim());
         if (userService.updateByPrimaryKeySelective(user) == 1) {
             System.err.println("修改成功");
             map.put("ret", 0);
@@ -125,10 +127,10 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/userSelect", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> select(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> select(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         User user = new User();
-        user = userService.selectByPrimaryKey(Integer.parseInt(((String) data.get("id")).trim()));
+        user = userService.selectByPrimaryKey(Integer.parseInt(request.getParameter("id").trim()));
         if (user != null) {
             System.err.println("根据id查询成功");
             map.put("ret", 0);

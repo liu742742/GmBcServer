@@ -18,7 +18,7 @@
 			type="text" name="password"><br> <input type="submit"
 			value="登录">
 	</form>
-	<form action="/GmBcServer/sigup" method="post" target="_self">
+	<form action="/GmBcServer/signup" method="post" target="_self">
 		用户名:<input type="text" name="username"><br> 密码:<input
 			type="text" name="password"><br> 地址:<input type="text"
 			name="address"><br> <input type="submit" value="注册">

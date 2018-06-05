@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,16 +91,16 @@ public class ContractController {
      * @return
      */
     @RequestMapping(value = "/saveContract", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> insert(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         Contract contract = new Contract();
         contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        contract.setPublisher(((String) data.get("publisher")).trim());
-        contract.setName(((String) data.get("name")).trim());
-        contract.setDescriptioin(((String) data.get("descriptioin")).trim());
-        contract.setAddress(((String) data.get("address")).trim());
-        contract.setType(((String) data.get("type")).trim());
-        contract.setArtifact(((String) data.get("artifact")).trim());
+        contract.setPublisher(request.getParameter("publisher").trim());
+        contract.setName(request.getParameter("name").trim());
+        contract.setDescriptioin(request.getParameter("descriptioin").trim());
+        contract.setAddress(request.getParameter("address").trim());
+        contract.setType(request.getParameter("type").trim());
+        contract.setArtifact(request.getParameter("artifact").trim());
         int i = contractService.insertSelective(contract);
         if (i == 1) {
             System.err.println("新增成功");
@@ -118,17 +120,17 @@ public class ContractController {
      * @return
      */
     @RequestMapping(value = "/contractUpdate", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> update(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> update(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         Contract contract = new Contract();
-        contract.setId(Integer.parseInt(((String) data.get("id")).trim()));
+        contract.setId(Integer.parseInt(request.getParameter("id").trim()));
         contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        contract.setPublisher(((String) data.get("publisher")).trim());
-        contract.setName(((String) data.get("name")).trim());
-        contract.setDescriptioin(((String) data.get("descriptioin")).trim());
-        contract.setAddress(((String) data.get("address")).trim());
-        contract.setType(((String) data.get("type")).trim());
-        contract.setArtifact(((String) data.get("artifact")).trim());
+        contract.setPublisher(request.getParameter("publisher").trim());
+        contract.setName(request.getParameter("name").trim());
+        contract.setDescriptioin(request.getParameter("descriptioin").trim());
+        contract.setAddress(request.getParameter("address").trim());
+        contract.setType(request.getParameter("type").trim());
+        contract.setArtifact(request.getParameter("artifact").trim());
         int i = contractService.updateByPrimaryKeySelective(contract);
         if (i == 1) {
             System.err.println("修改成功");

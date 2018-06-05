@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,15 +37,15 @@ public class TradingRecordController {
      * @return
      */
     @RequestMapping(value = "/saveTransaction", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public Map<String, Object> insert(@RequestBody Map<String, Object> data) {
+    public Map<String, Object> insert(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         TradingRecord tradingRecord = new TradingRecord();
         tradingRecord.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()).trim());
-        tradingRecord.setSender(((String) data.get("sender")).trim());
-        tradingRecord.setRecepient(((String) data.get("recepient")).trim());
-        tradingRecord.setAmmount(((String) data.get("ammount")).trim());
-        tradingRecord.setName(((String) data.get("name")).trim());
-        tradingRecord.setType(((String) data.get("type")).trim());
+        tradingRecord.setSender(request.getParameter("sender").trim());
+        tradingRecord.setRecepient(request.getParameter("recepient").trim());
+        tradingRecord.setAmmount(request.getParameter("ammount").trim());
+        tradingRecord.setName(request.getParameter("name").trim());
+        tradingRecord.setType(request.getParameter("type").trim());
         int i = tradingRecordService.insertSelective(tradingRecord);
         if (i == 1) {
             System.err.println("新增成功");
