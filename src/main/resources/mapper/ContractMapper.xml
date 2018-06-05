@@ -11,9 +11,10 @@
 			property="descriptioin" />
 		<result column="address" jdbcType="VARCHAR" property="address" />
 		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="artifact" jdbcType="VARCHAR" property="artifact" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, date, publisher, name, descriptioin, address, type
+		id, date, publisher, name, descriptioin, address, type, artifact
 	</sql>
 	<insert id="insertSelective" parameterType="com.entity.Contract" useGeneratedKeys="true" keyProperty="id">
 		insert into contract
@@ -39,6 +40,9 @@
 			<if test="type != null">
 				type,
 			</if>
+			<if test="artifact != null">
+				artifact,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -61,6 +65,9 @@
 			</if>
 			<if test="type != null">
 				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="artifact != null">
+				#{artifact,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -85,6 +92,9 @@
 			</if>
 			<if test="type != null">
 				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="artifact != null">
+				artifact = #{artifact,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}

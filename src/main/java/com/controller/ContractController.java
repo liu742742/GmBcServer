@@ -104,7 +104,7 @@ public class ContractController {
      * 
      * @param publisher
      * @param name
-     * @param descriptioin
+     * @param description
      * @param address
      * @param type
      * @return
@@ -117,9 +117,11 @@ public class ContractController {
             contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             contract.setPublisher(request.getParameter("publisher").trim());
             contract.setName(request.getParameter("name").trim());
-            contract.setDescriptioin(request.getParameter("descriptioin").trim());
+            contract.setDescriptioin(request.getParameter("description").trim());
             contract.setAddress(request.getParameter("address").trim());
             contract.setType(request.getParameter("type").trim());
+            contract.setArtifact(request.getParameter("artifact").trim());
+
             int i = contractService.insertSelective(contract);
             if (i == 1) {
                 System.err.println("新增成功");
@@ -143,7 +145,7 @@ public class ContractController {
      * @param id
      * @param publisher
      * @param name
-     * @param descriptioin
+     * @param description
      * @param address
      * @param type
      * @return
@@ -158,7 +160,7 @@ public class ContractController {
      contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
      contract.setPublisher(request.getParameter("publisher").trim());
      contract.setName(request.getParameter("name").trim());
-     contract.setDescriptioin(request.getParameter("descriptioin").trim());
+     contract.setDescriptioin(request.getParameter("description").trim());
      contract.setAddress(request.getParameter("address").trim());
      contract.setType(request.getParameter("type").trim());
     

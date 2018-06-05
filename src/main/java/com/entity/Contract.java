@@ -15,6 +15,8 @@ public class Contract {
 
     private String type;
 
+    private String artifact;
+
     public Integer getId() {
         return id;
     }
@@ -69,6 +71,14 @@ public class Contract {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getArtifact() {
+        return artifact;
+    }
+
+    public void setArtifact(String artifact) {
+        this.artifact = artifact == null ? null : artifact.trim();
     }
 
     @Override

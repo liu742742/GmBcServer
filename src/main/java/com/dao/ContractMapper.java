@@ -19,7 +19,7 @@ public interface ContractMapper {
     @Delete({"delete from contract where id = #{id,jdbcType=INTEGER}"})
     int deleteByPrimaryKey(Integer id);
 
-    @Insert({"insert into contract (id,date,publisher,name,descriptioin,address,type) values (#{id,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{publisher,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{descriptioin,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR})"})
+    @Insert({"insert into contract (id,date,publisher,name,descriptioin,address,type,artifact) values (#{id,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{publisher,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{descriptioin,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{artifact,jdbcType=VARCHAR})"})
     @SelectKey(statement = "select LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(Contract record);
 
