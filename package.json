@@ -1,0 +1,19 @@
+{
+  "name": "A2D",
+  "version": "1.0.0",
+  "description": "A web project",
+  "author": "yingqiyu",
+  "private": true,
+  "scripts": {
+    "config": "node config/index.js"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

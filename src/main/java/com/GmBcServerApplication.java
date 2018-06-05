@@ -25,7 +25,7 @@ public class GmBcServerApplication extends SpringBootServletInitializer{
     public static void main(String[] args) {
         SpringApplication.run(GmBcServerApplication.class, args);
     }
-    
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(GmBcServerApplication.class);
@@ -45,7 +45,6 @@ public class GmBcServerApplication extends SpringBootServletInitializer{
         source.registerCorsConfiguration("/**", buildConfig()); // 4  
         return new CorsFilter(source);  
     }  
-
     
     @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {

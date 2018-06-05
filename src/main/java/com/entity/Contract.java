@@ -15,6 +15,8 @@ public class Contract {
 
     private String type;
 
+    private String artifact;
+
     public Integer getId() {
         return id;
     }
@@ -71,9 +73,17 @@ public class Contract {
         this.type = type == null ? null : type.trim();
     }
 
+    public String getArtifact() {
+        return artifact;
+    }
+
+    public void setArtifact(String artifact) {
+        this.artifact = artifact == null ? null : artifact.trim();
+    }
+
     @Override
     public String toString() {
         return "Contract={" + "id=" + id + ", date='" + date + '\'' + ", publisher=" + publisher + ", name="
-                + name + ", descriptioin=" + descriptioin + ", address=" + address + ", type=" + type + '}';
+                + name + ", descriptioin=" + descriptioin + ", address=" + address + ", type=" + type + ",artifact="+artifact+"}";
     }
 }
