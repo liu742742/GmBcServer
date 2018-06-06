@@ -4,7 +4,7 @@ module.exports = [
     "replace": [
       {
         "regex": "(<\\!--\\* tomcat configuration -->)(.|\\n)*(<\\!-- tomcat configuration \\*-->)",
-        "content": "<url>http://localhost:8080/manager/text</url><username>tomcat</username><password>tomcat</password><server>a2d</server>"
+        "content": "<url>http://115.233.227.46:7010/manager/text</url><username>admin</username><password>admin</password><update>true</update>"
       }
     ]  
   }

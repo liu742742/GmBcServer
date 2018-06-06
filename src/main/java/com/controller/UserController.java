@@ -37,6 +37,8 @@ public class UserController {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
+        System.out.println(username);
+        System.out.println(password);
         User user = userService.selectByPrimaryUsernameAndPassword(username, password);
         if (user != null) {
             System.err.println("登录成功");
@@ -70,7 +72,7 @@ public class UserController {
             map.put("msg", "用户名已存在");
         } else {
             user = userService.selectByPrimaryAddress(address);
-            if (user.getId() != null) {
+            if (user != null) {
                 System.err.println("区块链地址已存在");
                 map.put("ret", 3);
                 map.put("msg", "区块链地址已存在");
