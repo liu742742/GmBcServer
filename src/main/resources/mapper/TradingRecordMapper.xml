@@ -9,10 +9,10 @@
 			property="recepient" />
 		<result column="ammount" jdbcType="VARCHAR" property="ammount" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, date, sender, recepient, ammount, name, type
+		id, date, sender, recepient, ammount, name, address
 	</sql>
 	<insert id="insertSelective" parameterType="com.entity.TradingRecord" useGeneratedKeys="true" keyProperty="id">
 		insert into trading_record
@@ -35,8 +35,8 @@
 			<if test="name != null">
 				name,
 			</if>
-			<if test="type != null">
-				type,
+			<if test="address != null">
+				address,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -58,8 +58,8 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
-			<if test="type != null">
-				#{type,jdbcType=VARCHAR},
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -82,8 +82,8 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="type != null">
-				type = #{type,jdbcType=VARCHAR},
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}

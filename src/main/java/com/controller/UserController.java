@@ -68,27 +68,21 @@ public class UserController {
             System.err.println("用户名已存在");
             map.put("ret", 2);
             map.put("msg", "用户名已存在");
+            return map;
+        }
+
+        user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAddress(address);
+        if (userService.insertSelective(user) == 1) {
+            System.err.println("新增成功");
+            map.put("ret", 0);
+            map.put("msg", "新增成功");
         } else {
-            user = userService.selectByPrimaryAddress(address);
-            if (user.getId() != null) {
-                System.err.println("区块链地址已存在");
-                map.put("ret", 3);
-                map.put("msg", "区块链地址已存在");
-            } else {
-                user = new User();
-                user.setUsername(username);
-                user.setPassword(password);
-                user.setAddress(address);
-                if (userService.insertSelective(user) == 1) {
-                    System.err.println("新增成功");
-                    map.put("ret", 0);
-                    map.put("msg", "新增成功");
-                } else {
-                    System.err.println("新增失败");
-                    map.put("ret", 1);
-                    map.put("msg", "新增失败");
-                }
-            }
+            System.err.println("新增失败");
+            map.put("ret", 1);
+            map.put("msg", "新增失败");
         }
         return map;
     }

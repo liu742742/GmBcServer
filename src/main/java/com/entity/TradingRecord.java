@@ -13,7 +13,7 @@ public class TradingRecord {
 
     private String name;
 
-    private String type;
+    private String address;
 
     public Integer getId() {
         return id;
@@ -63,18 +63,18 @@ public class TradingRecord {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getAddress() {
+        return address;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     @Override
     public String toString() {
         return "TradingRecord={" + "id=" + id + ", date='" + date + '\'' + ", sender=" + sender
-                + ", recepient=" + recepient + ", ammount=" + ammount + ", name=" + name + ", type=" + type
+                + ", recepient=" + recepient + ", ammount=" + ammount + ", name=" + name + ", address=" + address
                 + '}';
     }
 }

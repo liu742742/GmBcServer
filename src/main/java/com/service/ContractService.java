@@ -52,6 +52,13 @@ public interface ContractService {
     List<Contract> select();
 
     /**
+     * query contract info except artifact field
+     * 
+     * @return
+     */
+    public List<Contract> selectMainDetail();
+
+    /**
      * 根据id修改除id以外的字段值，修改字段可以选择
      * 
      * @param record

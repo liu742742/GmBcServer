@@ -19,7 +19,7 @@ public interface TradingRecordMapper {
     @Delete({"delete from trading_record where id = #{id,jdbcType=INTEGER}"})
     int deleteByPrimaryKey(Integer id);
 
-    @Insert({"insert into trading_record (id,date,sender,recepient,ammount,name,type) values (#{id,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{sender,jdbcType=VARCHAR},#{recepient,jdbcType=VARCHAR},#{ammount,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR})"})
+    @Insert({"insert into trading_record (id,date,sender,recepient,ammount,name,address) values (#{id,jdbcType=INTEGER},#{date,jdbcType=VARCHAR},#{sender,jdbcType=VARCHAR},#{recepient,jdbcType=VARCHAR},#{ammount,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},#{address,jdbcType=VARCHAR})"})
     @SelectKey(statement = "select LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(TradingRecord record);
 
@@ -35,7 +35,7 @@ public interface TradingRecordMapper {
 
     int updateByPrimaryKeySelective(TradingRecord record);
 
-    @Update({"update trading_record set date = #{date,jdbcType=VARCHAR},sender = #{sender,jdbcType=VARCHAR},", "recepient = #{recepient,jdbcType=VARCHAR},ammount = #{ammount,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},type = #{type,jdbcType=VARCHAR}where id = #{id,jdbcType=INTEGER}"})
+    @Update({"update trading_record set date = #{date,jdbcType=VARCHAR},sender = #{sender,jdbcType=VARCHAR},", "recepient = #{recepient,jdbcType=VARCHAR},ammount = #{ammount,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},address = #{address,jdbcType=VARCHAR}where id = #{id,jdbcType=INTEGER}"})
     int updateByPrimaryKey(TradingRecord record);
     
     //新增

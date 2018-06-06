@@ -7,14 +7,14 @@
 		<result column="publisher" jdbcType="VARCHAR"
 			property="publisher" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="descriptioin" jdbcType="VARCHAR"
-			property="descriptioin" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
 		<result column="address" jdbcType="VARCHAR" property="address" />
 		<result column="type" jdbcType="VARCHAR" property="type" />
 		<result column="artifact" jdbcType="VARCHAR" property="artifact" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, date, publisher, name, descriptioin, address, type, artifact
+		id, date, publisher, name, description, address, type, artifact
 	</sql>
 	<insert id="insertSelective" parameterType="com.entity.Contract" useGeneratedKeys="true" keyProperty="id">
 		insert into contract
@@ -31,8 +31,8 @@
 			<if test="name != null">
 				name,
 			</if>
-			<if test="descriptioin != null">
-				descriptioin,
+			<if test="description != null">
+				description,
 			</if>
 			<if test="address != null">
 				address,
@@ -57,8 +57,8 @@
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
 			</if>
-			<if test="descriptioin != null">
-				#{descriptioin,jdbcType=VARCHAR},
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
 			</if>
 			<if test="address != null">
 				#{address,jdbcType=VARCHAR},
@@ -84,8 +84,8 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="descriptioin != null">
-				descriptioin = #{descriptioin,jdbcType=VARCHAR},
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
 			</if>
 			<if test="address != null">
 				address = #{address,jdbcType=VARCHAR},

@@ -45,7 +45,7 @@ public class TradingRecordController {
         tradingRecord.setRecepient(request.getParameter("recepient").trim());
         tradingRecord.setAmmount(request.getParameter("ammount").trim());
         tradingRecord.setName(request.getParameter("name").trim());
-        tradingRecord.setType(request.getParameter("type").trim());
+        tradingRecord.setAddress(request.getParameter("address").trim());
         int i = tradingRecordService.insertSelective(tradingRecord);
         if (i == 1) {
             System.err.println("新增成功");

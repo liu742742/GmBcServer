@@ -46,6 +46,12 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
+    public List<Contract> selectMainDetail() {
+        // TODO Auto-generated method stub
+        return contractMapper.selectMainDetail();
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Contract record) {
         // TODO Auto-generated method stub
         return contractMapper.updateByPrimaryKeySelective(record);

@@ -38,7 +38,7 @@ public class ContractController {
     @RequestMapping(value = "/contracts", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public Map<String, Object> select() {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<Contract> contractions = contractService.select();
+        List<Contract> contractions = contractService.selectMainDetail();
         if (contractions.size() != 0) {
             System.err.println("查询成功");
             map.put("ret", 0);
@@ -63,7 +63,7 @@ public class ContractController {
         if (listContract.size() != 0) {
             List<Object> tokens = new ArrayList<Object>();
             for (Contract contract : listContract) {
-                if (contract.getType().equals("代币")) {
+                if (contract.getType().equals("token")) {
                     Map<String, Object> token = new HashMap<String, Object>();
                     token.put("id", contract.getId());
                     token.put("name", contract.getName());
@@ -74,7 +74,7 @@ public class ContractController {
             if (tokens.size() != 0) {
                 System.err.println("查询成功");
                 map.put("ret", 0);
-                map.put("token", tokens);
+                map.put("tokens", tokens);
                 map.put("msg", "查询成功");
                 return map;
             }
@@ -97,7 +97,7 @@ public class ContractController {
         contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         contract.setPublisher(request.getParameter("publisher").trim());
         contract.setName(request.getParameter("name").trim());
-        contract.setDescriptioin(request.getParameter("descriptioin").trim());
+        contract.setDescription(request.getParameter("description").trim());
         contract.setAddress(request.getParameter("address").trim());
         contract.setType(request.getParameter("type").trim());
         contract.setArtifact(request.getParameter("artifact").trim());
@@ -127,7 +127,7 @@ public class ContractController {
         contract.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         contract.setPublisher(request.getParameter("publisher").trim());
         contract.setName(request.getParameter("name").trim());
-        contract.setDescriptioin(request.getParameter("descriptioin").trim());
+        contract.setDescription(request.getParameter("description").trim());
         contract.setAddress(request.getParameter("address").trim());
         contract.setType(request.getParameter("type").trim());
         contract.setArtifact(request.getParameter("artifact").trim());

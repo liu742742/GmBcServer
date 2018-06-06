@@ -9,7 +9,7 @@ public class Contract {
 
     private String name;
 
-    private String descriptioin;
+    private String description;
 
     private String address;
 
@@ -49,12 +49,12 @@ public class Contract {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDescriptioin() {
-        return descriptioin;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptioin(String descriptioin) {
-        this.descriptioin = descriptioin == null ? null : descriptioin.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getAddress() {
@@ -84,6 +84,6 @@ public class Contract {
     @Override
     public String toString() {
         return "Contract={" + "id=" + id + ", date='" + date + '\'' + ", publisher=" + publisher + ", name="
-                + name + ", descriptioin=" + descriptioin + ", address=" + address + ", type=" + type + ",artifact="+artifact+"}";
+                + name + ", description=" + description + ", address=" + address + ", type=" + type + ",artifact="+artifact+"}";
     }
 }

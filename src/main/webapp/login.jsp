@@ -44,7 +44,7 @@
 	<form action="/GmBcServer/saveContract" method="post" target="_self">
 		发布人:<input type="text" name="publisher"><br> 合约名:<input
 			type="text" name="name"><br> 合约功能:<input type="text"
-			name="descriptioin"><br> 合约地址:<input type="text"
+			name="description"><br> 合约地址:<input type="text"
 			name="address"><br> 合约类型:<input type="text" name="type"><br>
 		<input type="submit" value="创建合约">
 	</form>
@@ -87,7 +87,7 @@
 		id:<input type="text" name="id"><br> 发布人:<input
 			type="text" name="publisher"><br> 合约名:<input type="text"
 			name="name"><br> 合约功能:<input type="text"
-			name="descriptioin"><br> 合约地址:<input type="text"
+			name="description"><br> 合约地址:<input type="text"
 			name="address"><br> 合约类型:<input type="text" name="type"><br>
 		<input type="submit" value="修改合约">
 	</form>
