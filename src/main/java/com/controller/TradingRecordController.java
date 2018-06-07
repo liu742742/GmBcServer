@@ -68,16 +68,11 @@ public class TradingRecordController {
     public Map<String, Object> select() {
         Map<String, Object> map = new HashMap<String, Object>();
         List<TradingRecord> transactions = tradingRecordService.select();
-        if (transactions.size() != 0) {
-            System.err.println("查询成功");
-            map.put("ret", 0);
-            map.put("transactions", transactions);
-            map.put("msg", "查询成功");
-        } else {
-            System.err.println("查询失败");
-            map.put("ret", 1);
-            map.put("msg", "查询失败");
-        }
+      
+        map.put("ret", 0);
+        map.put("transactions", transactions);
+        map.put("msg", "查询成功");
+       
         return map;
     }
 

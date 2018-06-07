@@ -60,28 +60,21 @@ public class ContractController {
     public Map<String, Object> selectTokens() {
         Map<String, Object> map = new HashMap<String, Object>();
         List<Contract> listContract = contractService.select();
-        if (listContract.size() != 0) {
-            List<Object> tokens = new ArrayList<Object>();
-            for (Contract contract : listContract) {
-                if (contract.getType().equals("token")) {
-                    Map<String, Object> token = new HashMap<String, Object>();
-                    token.put("id", contract.getId());
-                    token.put("name", contract.getName());
-                    token.put("address", contract.getAddress());
-                    tokens.add(token);
-                }
-            }
-            if (tokens.size() != 0) {
-                System.err.println("查询成功");
-                map.put("ret", 0);
-                map.put("tokens", tokens);
-                map.put("msg", "查询成功");
-                return map;
+       
+        List<Object> tokens = new ArrayList<Object>();
+        for (Contract contract : listContract) {
+            if (contract.getType().equals("token")) {
+                Map<String, Object> token = new HashMap<String, Object>();
+                token.put("id", contract.getId());
+                token.put("name", contract.getName());
+                token.put("address", contract.getAddress());
+                tokens.add(token);
             }
         }
-        System.err.println("查询失败");
-        map.put("ret", 1);
-        map.put("msg", "查询失败");
+            
+        map.put("ret", 0);
+        map.put("tokens", tokens);
+        map.put("msg", "查询成功");
         return map;
     }
 
