@@ -39,16 +39,12 @@ public class ContractController {
     public Map<String, Object> select() {
         Map<String, Object> map = new HashMap<String, Object>();
         List<Contract> contractions = contractService.selectMainDetail();
-        if (contractions.size() != 0) {
-            System.err.println("查询成功");
-            map.put("ret", 0);
-            map.put("contractions", contractions);
-            map.put("msg", "查询成功");
-        } else {
-            System.err.println("查询失败");
-            map.put("ret", 1);
-            map.put("msg", "查询失败");
-        }
+
+        System.err.println("查询成功");
+        map.put("ret", 0);
+        map.put("contractions", contractions);
+        map.put("msg", "查询成功");
+       
         return map;
     }
 
