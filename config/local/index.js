@@ -13,7 +13,7 @@ module.exports = [
     "replace": [
       {
         "regex": "(## mysql url #)(.|\\n)*(# mysql url ##)",
-        "content": "spring.datasource.url=jdbc:mysql://115.233.227.46:7015/gmbcserver?characterEncoding=utf8&useUnicode=true&useSSL=true"
+        "content": "spring.datasource.url=jdbc:mysql://localhost:3306/gmbcserver?characterEncoding=utf8&useUnicode=true&useSSL=true"
       },
       {
         "regex": "(## mysql username #)(.|\\n)*(# mysql username ##)",
